@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/scenes/Intro.unity
+    guid: 52ae9d1e5f1e018448d17d34edea6807
+  - enabled: 1
+    path: Assets/scenes/Quiz.unity
+    guid: f1fa99c2f353e2b41a55d8a3c00c7e28
