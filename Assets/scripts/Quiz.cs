@@ -101,7 +101,6 @@ public class Quiz : MonoBehaviour {
 
     void InCorrectClicked(int buttonNr)
     {
-        Debug.Log(buttonNr);
         buttons[buttonNr].gameObject.GetComponent<Image>().color = wrongColor;
         StartCoroutine(correctButtonBlink());
         StartCoroutine(ChangeQuestion());
