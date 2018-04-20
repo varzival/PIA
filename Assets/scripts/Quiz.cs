@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Quiz : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class Quiz : MonoBehaviour {
     public Color correctColor;
     public Color wrongColor;
     public QuizData quizData;
+    public string nextScene;
 
     private int questionCounter = 0;
     private int correctButton;
@@ -131,8 +133,7 @@ public class Quiz : MonoBehaviour {
         currentQuestion++;
         if (currentQuestion >= quizData.questions.Length)
         {
-            Debug.Log("End");
-            Debug.Break();
+            SceneManager.LoadScene(nextScene);
         }
         else
         {

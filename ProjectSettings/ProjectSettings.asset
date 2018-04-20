@@ -7,11 +7,11 @@ PlayerSettings:
   productGUID: 2c6dde07d293fc54faadbcec042a3739
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 0
+  defaultScreenOrientation: 2
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: JungeAkademie
   productName: PIA
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}

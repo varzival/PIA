@@ -319,7 +319,7 @@ MonoBehaviour:
     wrongTexts:
     - inc1
     - inc2
-    - "\xEEnc3"
+    - inc3
   - quizText: Quiz2
     correctText: correct
     wrongTexts:
@@ -965,6 +965,7 @@ MonoBehaviour:
   correctColor: {r: 0.15862082, g: 1, b: 0, a: 1}
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
   quizData: {fileID: 114086684674739366}
+  nextScene: End
 --- !u!114 &114849560766411706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1010,7 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8014706, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1202,7 +1203,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 355, y: -341}
-  m_SizeDelta: {x: 552.3, y: 281.3}
+  m_SizeDelta: {x: 650, y: 281.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224124093979654942
 RectTransform:
@@ -1293,7 +1294,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 361, y: -37}
-  m_SizeDelta: {x: 552.3, y: 281.3}
+  m_SizeDelta: {x: 650, y: 281.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224597342237832036
 RectTransform:
@@ -1375,7 +1376,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -339.9169, y: -335}
-  m_SizeDelta: {x: 552.3, y: 281.3}
+  m_SizeDelta: {x: 650, y: 281.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224808878187528794
 RectTransform:
@@ -1394,7 +1395,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -339.9169, y: -37}
-  m_SizeDelta: {x: 552.3, y: 281.3}
+  m_SizeDelta: {x: 650, y: 281.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224885576995615916
 RectTransform:

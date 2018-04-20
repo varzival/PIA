@@ -66,6 +66,7 @@ public class PersistantSaver {
         savePoints();
         saveStationOrder();
         saveHash();
+        PlayerPrefs.Save();
     }
 
     private static void saveStationOrder()
@@ -75,7 +76,8 @@ public class PersistantSaver {
         {
             sb.Append(playerData.stationOrder[i] + ".");
         }
-        sb.Remove(playerData.stationOrder.Length - 1, 1);
+        sb.Remove(sb.ToString().Length - 1, 1);
+        Debug.Log("saving: so = " + sb.ToString());
         PlayerPrefs.SetString("so", sb.ToString());
     }
 
@@ -161,13 +163,14 @@ public class PersistantSaver {
         {
             sb.Append(playerData.points[i]+".");
         }
-        sb.Remove(playerData.stationOrder.Length - 1, 1);
+        sb.Remove(sb.ToString().Length - 1, 1);
 
         return generateHash(sb.ToString());
     }
 
     private static string generateHash(string data)
     {
+        Debug.Log("Generating hash for data: " + data);
         byte[] byteData = Encoding.ASCII.GetBytes(data);
         SHA1 sha = new SHA1CryptoServiceProvider();
         byte[] hash = sha.ComputeHash(byteData);

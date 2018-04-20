@@ -1,19 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class severalPages : MonoBehaviour {
 
     public GameObject[] pages;
     public GameObject prevButton;
     public GameObject nextButton;
+    public string nextScene;
     private int currentPage = 0;
 
     public void next()
     {
         if (currentPage+1 >= pages.Length)
         {
-            Debug.Log("Page overflow.");
+            if (currentPage + 1 == pages.Length && !nextScene.Equals(""))
+            {
+                SceneManager.LoadScene(nextScene);
+            }
+            else
+            {
+                Debug.Log("Page overflow.");
+            }
         }
         else
         {
@@ -47,7 +57,8 @@ public class severalPages : MonoBehaviour {
         else if (currentPage == pages.Length - 1)
         {
             prevButton.SetActive(true);
-            nextButton.SetActive(false);
+            if (nextScene.Equals("")) nextButton.SetActive(false);
+            else nextButton.SetActive(true);
         }
         else
         {

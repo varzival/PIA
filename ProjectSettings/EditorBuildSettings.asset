@@ -9,5 +9,17 @@ EditorBuildSettings:
     path: Assets/scenes/Intro.unity
     guid: 52ae9d1e5f1e018448d17d34edea6807
   - enabled: 1
+    path: Assets/scenes/Intro 2.unity
+    guid: 20a8ca985e4411b4589570721a2a61be
+  - enabled: 1
+    path: Assets/scenes/StationChoice.unity
+    guid: 14a3c3b0269431440ba5ad5524ce338c
+  - enabled: 1
+    path: Assets/scenes/Info Station 1.unity
+    guid: 1d3b331cfd3ee1a43a3cd2109e3636f5
+  - enabled: 1
     path: Assets/scenes/Quiz.unity
     guid: f1fa99c2f353e2b41a55d8a3c00c7e28
+  - enabled: 1
+    path: Assets/scenes/End.unity
+    guid: d4c2f2e861a134347b1f65a28e0d6183

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour {
 
+    public bool quit;
     public float waitTime;
     private float t = 0;
     public string sceneName;
@@ -19,7 +20,8 @@ public class changeScene : MonoBehaviour {
         t += Time.deltaTime;
         if (t > waitTime)
         {
-            SceneManager.LoadScene(sceneName);
+            if (quit) Application.Quit();
+            else SceneManager.LoadScene(sceneName);
         }
 	}
 }
