@@ -12,6 +12,7 @@ public class PersistantSaver {
     {
         public int[] points;
         public int[] stationOrder;
+        public string currentScene;
     }
 
     private static PlayerData playerData;
@@ -46,6 +47,11 @@ public class PersistantSaver {
         return playerData.points[station];
     }
 
+    public static string getCurrentScene()
+    {
+        return playerData.currentScene;
+    }
+
     public static void init()
     {
         playerData.points = new int[5];
@@ -65,8 +71,14 @@ public class PersistantSaver {
     {
         savePoints();
         saveStationOrder();
+        saveCurrentScene();
         saveHash();
         PlayerPrefs.Save();
+    }
+
+    private static void saveCurrentScene()
+    {
+        PlayerPrefs.SetString("cs", playerData.currentScene);
     }
 
     private static void saveStationOrder()
@@ -112,6 +124,8 @@ public class PersistantSaver {
                 return;
             }
 
+            playerData.currentScene = PlayerPrefs.GetString("cs", "Intro_StationChoice");
+
             string hashStringGenerated = generateHashFromData();
             if (!hashStringRead.Equals(hashStringGenerated))
             {
@@ -122,7 +136,7 @@ public class PersistantSaver {
         
     }
 
-    private static void createNewSave()
+    public static void createNewSave()
     {
         Debug.Log("Creating new save.");
         for (int i = 0; i < playerData.points.Length; i++)
@@ -134,6 +148,8 @@ public class PersistantSaver {
             playerData.stationOrder[i] = i;
         }
         Shuffle(playerData.stationOrder);
+
+        playerData.currentScene = "Intro_StationChoice";
 
         saveAll();
     }
@@ -164,6 +180,8 @@ public class PersistantSaver {
             sb.Append(playerData.points[i]+".");
         }
         sb.Remove(sb.ToString().Length - 1, 1);
+        sb.Append("cs_");
+        sb.Append(playerData.currentScene);
 
         return generateHash(sb.ToString());
     }
