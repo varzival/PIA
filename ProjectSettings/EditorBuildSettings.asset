@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/scenes/Intro_StationChoice.unity
     guid: d87ac4289d46f3844a1babe4460c33c6
   - enabled: 1
+    path: Assets/scenes/CreateAccount.unity
+    guid: 19537d1ac8ec15049aaf4203e2c57181
+  - enabled: 1
     path: Assets/scenes/Intro 2.unity
     guid: 20a8ca985e4411b4589570721a2a61be
   - enabled: 1

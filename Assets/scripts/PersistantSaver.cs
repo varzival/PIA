@@ -10,6 +10,7 @@ public class PersistantSaver {
 
     public struct PlayerData
     {
+        public string nickname;
         public int[] points;
         public int[] stationOrder;
         public string currentScene;
@@ -29,6 +30,20 @@ public class PersistantSaver {
             list[i] = value;
             i--;
         }
+    }
+
+    public static void setNick(string nick)
+    {
+        playerData.nickname = nick;
+        saveNick();
+        saveToHardDrive();
+    }
+
+    public static void setCurrentScene(string scene)
+    {
+        playerData.currentScene = scene;
+        saveCurrentScene();
+        saveToHardDrive();
     }
 
     public static int[] Points
@@ -56,6 +71,7 @@ public class PersistantSaver {
     {
         playerData.points = new int[5];
         playerData.stationOrder = new int[5];
+        playerData.nickname = "nick";
         loadAll();
     }
 
@@ -67,13 +83,28 @@ public class PersistantSaver {
         }
     }
 
+    public static void saveNick()
+    {
+        PlayerPrefs.SetString("nickname", playerData.nickname);
+    }
+
     public static void saveAll()
     {
         savePoints();
         saveStationOrder();
         saveCurrentScene();
-        saveHash();
-        PlayerPrefs.Save();
+        saveActiveStations();
+        saveNick();
+        saveToHardDrive();
+    }
+
+    public static void saveActiveStations()
+    {
+        for (int i = 0; i < playerData.stationOrder.Length; i++)
+        {
+            if (StationData.stations[i].active) PlayerPrefs.SetString("sa_" + i, "t");
+            else PlayerPrefs.SetString("sa_" + i, "f");
+        }
     }
 
     private static void saveCurrentScene()
@@ -126,6 +157,23 @@ public class PersistantSaver {
 
             playerData.currentScene = PlayerPrefs.GetString("cs", "Intro_StationChoice");
 
+            for (int i = 0; i < StationData.stations.Length; i++)
+            {
+                string v = PlayerPrefs.GetString("sa_"+i, "err");
+                if (v.Equals("t"))
+                    StationData.stations[i].active = true;
+                else if (v.Equals("f"))
+                    StationData.stations[i].active = false;
+                else
+                {
+                    Debug.Log("Could not read active stations.");
+                    createNewSave();
+                    return;
+                }
+            }
+
+            playerData.nickname = PlayerPrefs.GetString("nickname", "nick");
+
             string hashStringGenerated = generateHashFromData();
             if (!hashStringRead.Equals(hashStringGenerated))
             {
@@ -149,7 +197,8 @@ public class PersistantSaver {
         }
         Shuffle(playerData.stationOrder);
 
-        playerData.currentScene = "Intro_StationChoice";
+        playerData.currentScene = "CreateAccount";
+        playerData.nickname = "nick";
 
         saveAll();
     }
@@ -161,7 +210,7 @@ public class PersistantSaver {
     }
     */
 
-    private static void saveHash()
+    public static void saveHash()
     {
         string hashString = generateHashFromData();
         PlayerPrefs.SetString("h", hashString);
@@ -181,7 +230,14 @@ public class PersistantSaver {
         }
         sb.Remove(sb.ToString().Length - 1, 1);
         sb.Append("cs_");
-        sb.Append(playerData.currentScene);
+        sb.Append("sa_");
+        for (int i = 0; i < StationData.stations.Length; i++)
+        {
+            sb.Append(StationData.stations[i].active + ".");
+        }
+        sb.Remove(sb.ToString().Length - 1, 1);
+
+        sb.Append("nick_" + playerData.nickname);
 
         return generateHash(sb.ToString());
     }
@@ -193,5 +249,11 @@ public class PersistantSaver {
         SHA1 sha = new SHA1CryptoServiceProvider();
         byte[] hash = sha.ComputeHash(byteData);
         return Encoding.ASCII.GetString(hash);
+    }
+
+    public static void saveToHardDrive()
+    {
+        saveHash();
+        PlayerPrefs.Save();
     }
 }

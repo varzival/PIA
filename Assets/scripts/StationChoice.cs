@@ -15,12 +15,14 @@ public class StationChoice : MonoBehaviour {
 
     public void setStations()
     {
-        StationData.populateStations();
         if (!tGTS.isOn) StationData.stations[0].active = false;
         if (!tINK.isOn) StationData.stations[1].active = false;
         if (!tINT.isOn) StationData.stations[2].active = false;
         if (!tLMG.isOn) StationData.stations[3].active = false;
         if (!tKIK.isOn) StationData.stations[4].active = false;
+
+        PersistantSaver.saveActiveStations();
+        PersistantSaver.saveToHardDrive();
     }
 
     public static void debugStations()

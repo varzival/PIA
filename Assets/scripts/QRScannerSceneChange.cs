@@ -17,8 +17,6 @@ public class QRScannerSceneChange : MonoBehaviour {
 
     //public string nextScene;
 
-    public StationDataChangeScene stationData;
-
     // Use this for initialization
     void Start()
     {
@@ -59,13 +57,21 @@ public class QRScannerSceneChange : MonoBehaviour {
             RestartTime += Time.realtimeSinceStartup + 1f;
 
             //bool found = false;
-            foreach (StationDataChangeScene.stationString statString in stationData.stringToStations)
+            foreach (StationData.stationInfo si in StationData.stations)
             {
-                if (statString.str.Equals(barCodeValue))
+                if (si.qrcodestring.Equals(barCodeValue))
                 {
                     //found = true;
-                    SceneManager.LoadScene(statString.scene);
-                    break;
+                    if (si.active == true)
+                    {
+                        SceneManager.LoadScene(si.scene);
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("Station inactive");
+                        break;
+                    }
                 }
             }
 

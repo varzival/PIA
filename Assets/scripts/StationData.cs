@@ -12,6 +12,14 @@ public class StationData {
         public string scene;
         public string qrcodestring;
         public bool active;
+        public tip tips;
+    }
+
+    public struct tip
+    {
+        public string t1;
+        public string t2;
+        public string t3;
     }
 
     public static stationInfo[] stations;
@@ -19,11 +27,17 @@ public class StationData {
 	// Use this for initialization
 	public static void populateStations () {
 
-        stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", active=true };
-        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", active = true };
-        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", active = true };
-        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", active = true };
-        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", active = true };
+        tip tipGTS = new tip { t1 = "GTS T1", t2 = "GTS t2", t3 = "GTS t3" };
+        tip tipINK = new tip { t1 = "INK T1", t2 = "INK t2", t3 = "INK t3" };
+        tip tipINT = new tip { t1 = "INT T1", t2 = "INT t2", t3 = "INT t3" };
+        tip tipLMG = new tip { t1 = "LMG T1", t2 = "LMG t2", t3 = "LMG t3" };
+        tip tipKIK = new tip { t1 = "KIK T1", t2 = "KIK t2", t3 = "KIK t3" };
+
+        stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", active=true, tips=tipGTS };
+        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", active = true, tips = tipINK };
+        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", active = true, tips = tipINT };
+        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", active = true, tips = tipLMG };
+        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", active = true, tips = tipKIK };
 
         stations = new stationInfo[] { ganztagsschulen, inklusion, integration, lmgesetze, krimklzimmer };
 

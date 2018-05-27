@@ -8,6 +8,7 @@ public class initSaver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        StationData.populateStations();
         PersistantSaver.init();
         StartCoroutine(loadCurrentScene());
 	}
