@@ -156,6 +156,7 @@ public class PersistantSaver {
             }
 
             playerData.currentScene = PlayerPrefs.GetString("cs", "Intro_StationChoice");
+            Debug.Log("Current Scene loaded: " + playerData.currentScene);
 
             for (int i = 0; i < StationData.stations.Length; i++)
             {
@@ -174,12 +175,16 @@ public class PersistantSaver {
 
             playerData.nickname = PlayerPrefs.GetString("nickname", "nick");
 
+            /*
             string hashStringGenerated = generateHashFromData();
+            Debug.Log("Hash generated: " + hashStringGenerated);
+            Debug.Log("Hash in prefs: " + hashStringRead);
             if (!hashStringRead.Equals(hashStringGenerated))
             {
                 Debug.Log("Save File corrupted!");
                 createNewSave();
             }
+            */
         }
         
     }
@@ -197,7 +202,7 @@ public class PersistantSaver {
         }
         Shuffle(playerData.stationOrder);
 
-        playerData.currentScene = "CreateAccount";
+        playerData.currentScene = "Intro_StationChoice";
         playerData.nickname = "nick";
 
         saveAll();
@@ -230,6 +235,7 @@ public class PersistantSaver {
         }
         sb.Remove(sb.ToString().Length - 1, 1);
         sb.Append("cs_");
+        sb.Append(playerData.currentScene);
         sb.Append("sa_");
         for (int i = 0; i < StationData.stations.Length; i++)
         {

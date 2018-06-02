@@ -16,7 +16,9 @@ public class initSaver : MonoBehaviour {
     IEnumerator loadCurrentScene()
     {
         yield return new WaitForSeconds(2.0f);
+        Debug.Log("Loading " + PersistantSaver.getCurrentScene());
         SceneManager.LoadScene(PersistantSaver.getCurrentScene());
+        yield return null;
     }
 	
 	// Update is called once per frame
