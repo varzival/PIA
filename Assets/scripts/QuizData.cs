@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class QuizData : MonoBehaviour {
 
+    public int station;
+
     [System.Serializable]
     public class Question
     {

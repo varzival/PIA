@@ -14,12 +14,13 @@ public class PersistantSaver {
         public int[] points;
         public int[] stationOrder;
         public string currentScene;
+        public int currentQuestion;
     }
 
     private static PlayerData playerData;
 
     //Fisher Yates Shuffle
-    public static void Shuffle(int[] list)
+    private static void Shuffle(int[] list)
     {
         int i = list.Length-1;
         while (i >= 1)
@@ -43,6 +44,25 @@ public class PersistantSaver {
     {
         playerData.currentScene = scene;
         saveCurrentScene();
+        saveToHardDrive();
+    }
+
+    public static void setCurrentQuestion(int question)
+    {
+        playerData.currentQuestion = question;
+        saveCurrentQuestion();
+        saveToHardDrive();
+    }
+
+    public static int getCurrentQuestion()
+    {
+        return playerData.currentQuestion;
+    }
+
+    public static void incrementPoints(int station)
+    {
+        playerData.points[station] = playerData.points[station] + 1;
+        savePoints();
         saveToHardDrive();
     }
 
@@ -75,7 +95,7 @@ public class PersistantSaver {
         loadAll();
     }
 
-	public static void savePoints()
+	private static void savePoints()
     {
         for (int station = 0; station < playerData.points.Length; station++)
         {
@@ -83,7 +103,7 @@ public class PersistantSaver {
         }
     }
 
-    public static void saveNick()
+    private static void saveNick()
     {
         PlayerPrefs.SetString("nickname", playerData.nickname);
     }
@@ -95,6 +115,7 @@ public class PersistantSaver {
         saveCurrentScene();
         saveActiveStations();
         saveNick();
+        saveCurrentQuestion();
         saveToHardDrive();
     }
 
@@ -105,6 +126,11 @@ public class PersistantSaver {
             if (StationData.stations[i].active) PlayerPrefs.SetString("sa_" + i, "t");
             else PlayerPrefs.SetString("sa_" + i, "f");
         }
+    }
+
+    private static void saveCurrentQuestion()
+    {
+        PlayerPrefs.SetInt("cq", playerData.currentQuestion);
     }
 
     private static void saveCurrentScene()
@@ -138,7 +164,6 @@ public class PersistantSaver {
                 playerData.points[station] = PlayerPrefs.GetInt("s" + station, 0);
             }
 
-            StringBuilder sb = new StringBuilder();
             string so_str = PlayerPrefs.GetString("so");
             string[] so_split = so_str.Split('.');
             try
@@ -175,6 +200,7 @@ public class PersistantSaver {
 
             playerData.nickname = PlayerPrefs.GetString("nickname", "nick");
 
+            playerData.currentQuestion = PlayerPrefs.GetInt("cq", -1);
             /*
             string hashStringGenerated = generateHashFromData();
             Debug.Log("Hash generated: " + hashStringGenerated);
@@ -204,6 +230,7 @@ public class PersistantSaver {
 
         playerData.currentScene = "Intro_StationChoice";
         playerData.nickname = "nick";
+        playerData.currentQuestion = -1;
 
         saveAll();
     }

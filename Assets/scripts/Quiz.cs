@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class Quiz : MonoBehaviour {
 
     public float time;
-    public Image timer;
+    public Text timer;
     public Text quizText;
+    public Text quizCaption;
     public Button[] buttons;
     public Color correctColor;
     public Color wrongColor;
@@ -25,11 +26,25 @@ public class Quiz : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        /*
         timer.type = Image.Type.Filled;
         timer.fillMethod = Image.FillMethod.Radial360;
         timer.fillAmount = 1.0f;
+        */
+        currentQuestion = PersistantSaver.getCurrentQuestion() + 1;
+        if (currentQuestion > quizData.questions.Length)
+        {
+            PersistantSaver.setCurrentQuestion(-1);
+            SceneManager.LoadScene(nextScene);
+        }
 
-        FillQuiz(quizData.questions[0]);
+        else
+        {
+            timer.text = time.ToString("F0");
+
+            FillQuiz(quizData.questions[currentQuestion]);
+        }
+        
 
         //delegateButtons();
     }
@@ -54,6 +69,7 @@ public class Quiz : MonoBehaviour {
     {
         interactable = true;
         quizText.text = question.quizText;
+        quizCaption.text = "Frage " + (currentQuestion + 1);
         correctButton = 0;
         //Shuffle Buttons
         for (int i = buttons.Length-1; i>0; i--)
@@ -78,7 +94,7 @@ public class Quiz : MonoBehaviour {
         {
             timeSpent = time;
         }
-        timer.fillAmount = 1.0f - timeSpent / time;
+        timer.text = (time - timeSpent).ToString("F0");
     }
 
     public void onButtonClick(Button but)
@@ -98,6 +114,7 @@ public class Quiz : MonoBehaviour {
     void CorrectClicked(int buttonNr)
     {
         buttons[correctButton].gameObject.GetComponent<Image>().color = correctColor;
+        PersistantSaver.incrementPoints(quizData.station);
         StartCoroutine(ChangeQuestion());
     }
 
@@ -124,21 +141,33 @@ public class Quiz : MonoBehaviour {
     IEnumerator ChangeQuestion()
     {
         interactable = false;
-        yield return new WaitForSeconds(waitChangeTime);
-        timeSpent = 0.0f;
-        foreach(Button but in buttons)
-        {
-            but.gameObject.GetComponent<Image>().color = Color.white;
-        }
+
         currentQuestion++;
+
         if (currentQuestion >= quizData.questions.Length)
         {
+            PersistantSaver.setCurrentQuestion(-1);
+            PersistantSaver.setCurrentScene(nextScene);
+            yield return new WaitForSeconds(waitChangeTime);
             SceneManager.LoadScene(nextScene);
         }
+
         else
         {
+            PersistantSaver.setCurrentQuestion(currentQuestion);
+            yield return new WaitForSeconds(waitChangeTime);
+            timeSpent = 0.0f;
+            foreach(Button but in buttons)
+            {
+                but.gameObject.GetComponent<Image>().color = Color.white;
+            }
+
             FillQuiz(quizData.questions[currentQuestion]);
             interactable = true;
+            
+
         }
+
+        
     }
 }
