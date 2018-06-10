@@ -13,7 +13,6 @@ public class Quiz : MonoBehaviour {
     public Button[] buttons;
     public Color correctColor;
     public Color wrongColor;
-    public QuizData quizData;
     public string nextScene;
     
     private int correctButton;
@@ -21,15 +20,18 @@ public class Quiz : MonoBehaviour {
     private int currentQuestion = 0;
     private float waitChangeTime = 2.0f;
     private bool interactable = true;
+    private int station;
 
 
     // Use this for initialization
     void Start () {
 
-        PersistantSaver.playerData.stationStats[quizData.station].discovered = true;
+        station = PersistantSaver.getCurrentStation();
+
+        PersistantSaver.playerData.stationStats[station].discovered = true;
         
         currentQuestion = PersistantSaver.playerData.currentQuestion + 1;
-        if (currentQuestion > quizData.questions.Length)
+        if (currentQuestion > StationData.stations[station].quizQuestions.Length)
         {
             PersistantSaver.playerData.currentQuestion = -1;
             SceneManager.LoadScene(nextScene);
@@ -39,13 +41,13 @@ public class Quiz : MonoBehaviour {
         {
             timer.text = time.ToString("F0");
 
-            FillQuiz(quizData.questions[currentQuestion]);
+            FillQuiz(StationData.stations[station].quizQuestions[currentQuestion]);
         }
 
         PersistantSaver.saveToHardDrive();
     }
 
-    void FillQuiz(QuizData.Question question)
+    void FillQuiz(StationData.Question question)
     {
         interactable = true;
         quizText.text = question.quizText;
@@ -100,7 +102,7 @@ public class Quiz : MonoBehaviour {
     void CorrectClicked(int buttonNr)
     {
         buttons[correctButton].gameObject.GetComponent<Image>().color = correctColor;
-        PersistantSaver.incrementPoints(quizData.station);
+        PersistantSaver.incrementPoints(station);
         StartCoroutine(ChangeQuestion());
     }
 
@@ -130,7 +132,7 @@ public class Quiz : MonoBehaviour {
 
         currentQuestion++;
 
-        if (currentQuestion >= quizData.questions.Length)
+        if (currentQuestion >= StationData.stations[station].quizQuestions.Length)
         {
             PersistantSaver.playerData.currentQuestion = -1;
             PersistantSaver.playerData.currentScene = nextScene;
@@ -150,7 +152,7 @@ public class Quiz : MonoBehaviour {
                 but.gameObject.GetComponent<Image>().color = Color.white;
             }
 
-            FillQuiz(quizData.questions[currentQuestion]);
+            FillQuiz(StationData.stations[station].quizQuestions[currentQuestion]);
             interactable = true;
             
 

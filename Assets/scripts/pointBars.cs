@@ -23,8 +23,9 @@ public class pointBars : MonoBehaviour {
         int maxPointSum = 0;
         for (int i = 0; i<barEmpts.Length; i++)
         {
-            maxPointSum += StationData.stations[i].maxPoints;
-            float newheight = ((float)StationData.stations[i].maxPoints / (float)maxPoints) * height;
+            int maxPoints = StationData.stations[i].quizQuestions.Length;
+            maxPointSum += maxPoints;
+            float newheight = ((float)maxPoints / (float)maxPoints) * height;
             barEmpts[i].sizeDelta = new Vector2(barEmpts[i].sizeDelta.x, newheight);
             barEmpts[i].anchoredPosition = new Vector2(barEmpts[i].anchoredPosition.x, newheight/2);
         }

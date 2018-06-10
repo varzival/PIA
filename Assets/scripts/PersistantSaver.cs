@@ -55,7 +55,18 @@ public class PersistantSaver {
     public static void incrementPoints(int station)
     {
         playerData.points[station]++;
-        saveToHardDrive();
+        //saveToHardDrive();
+    }
+
+    public static int getCurrentStation()
+    {
+
+        for (int i = 0; i < StationData.getStationCount(); i++)
+        {
+            int num = playerData.stationOrder[i];
+            if (playerData.stationStats[i].active) return num;
+        }
+        return -1;
     }
 
 
