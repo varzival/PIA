@@ -12,6 +12,7 @@ public class pointBars : MonoBehaviour {
 
     public RectTransform[] barEmpts;
     public RectTransform[] barFulls;
+    public Text[] texts;
 
     public Text pointsMaxText;
     public Text pointsAchievedText;
@@ -42,7 +43,15 @@ public class pointBars : MonoBehaviour {
         pointsAchievedText.text = pointSum + "";
         pointsMaxText.text = maxPointSum + "";
 
-    }
+        for (int i = 0; i < texts.Length; i++)
+        {
+            if (!StationData.stations[i].discovered)
+            {
+                texts[i].text = "???";
+            }
+        }
+
+ }
 	
 	// Update is called once per frame
 	void Update () {

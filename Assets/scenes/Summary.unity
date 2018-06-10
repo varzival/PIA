@@ -1736,6 +1736,12 @@ MonoBehaviour:
   - {fileID: 160124911}
   - {fileID: 219669197}
   - {fileID: 1466704701}
+  texts:
+  - {fileID: 191204596}
+  - {fileID: 853733694}
+  - {fileID: 480992333}
+  - {fileID: 1584294938}
+  - {fileID: 1053883865}
   pointsMaxText: {fileID: 292461304}
   pointsAchievedText: {fileID: 652561110}
 --- !u!4 &1025439311

@@ -12,6 +12,7 @@ public class StationData {
         public string scene;
         public string qrcodestring;
         public bool active;
+        public bool discovered;
         public tip tips;
         public int maxPoints;
     }
@@ -34,11 +35,11 @@ public class StationData {
         tip tipLMG = new tip { t1 = "LMG T1", t2 = "LMG t2", t3 = "LMG t3" };
         tip tipKIK = new tip { t1 = "KIK T1", t2 = "KIK t2", t3 = "KIK t3" };
 
-        stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", active=true, tips=tipGTS, maxPoints=3 };
-        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", active = true, tips = tipINK, maxPoints = 5 };
-        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", active = true, tips = tipINT, maxPoints = 5 };
-        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", active = true, tips = tipLMG, maxPoints = 5 };
-        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", active = true, tips = tipKIK, maxPoints = 5 };
+        stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", active=true, discovered=false, tips=tipGTS, maxPoints=3 };
+        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", active = true, discovered = false, tips = tipINK, maxPoints = 5 };
+        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", discovered = false, active = true, tips = tipINT, maxPoints = 5 };
+        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", discovered = false, active = true, tips = tipLMG, maxPoints = 5 };
+        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", discovered = false, active = true, tips = tipKIK, maxPoints = 5 };
 
         stations = new stationInfo[] { ganztagsschulen, inklusion, integration, lmgesetze, krimklzimmer };
 

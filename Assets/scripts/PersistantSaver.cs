@@ -116,7 +116,17 @@ public class PersistantSaver {
         saveActiveStations();
         saveNick();
         saveCurrentQuestion();
+        saveDiscoveredStations();
         saveToHardDrive();
+    }
+
+    public static void saveDiscoveredStations()
+    {
+        for (int i = 0; i < playerData.stationOrder.Length; i++)
+        {
+            if (StationData.stations[i].discovered) PlayerPrefs.SetString("sd_" + i, "t");
+            else PlayerPrefs.SetString("sd_" + i, "f");
+        }
     }
 
     public static void saveActiveStations()
@@ -193,6 +203,19 @@ public class PersistantSaver {
                 else
                 {
                     Debug.Log("Could not read active stations.");
+                    createNewSave();
+                    return;
+                }
+
+
+                v = PlayerPrefs.GetString("sd_" + i, "err");
+                if (v.Equals("t"))
+                    StationData.stations[i].discovered = true;
+                else if (v.Equals("f"))
+                    StationData.stations[i].discovered = false;
+                else
+                {
+                    Debug.Log("Could not read discovered stations.");
                     createNewSave();
                     return;
                 }
