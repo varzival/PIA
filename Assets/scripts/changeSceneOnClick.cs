@@ -13,6 +13,6 @@ public class changeSceneOnClick : MonoBehaviour {
 
     public void loadCurrentScene()
     {
-        SceneManager.LoadScene(PersistantSaver.getCurrentScene());
+        SceneManager.LoadScene(PersistantSaver.playerData.currentScene);
     }
 }

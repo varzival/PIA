@@ -62,10 +62,10 @@ public class QRScannerSceneChange : MonoBehaviour {
             if (StationData.stations[i].qrcodestring.Equals(barCodeValue))
                 {
                     //found = true;
-                    if (StationData.stations[i].active == true)
+                    if (PersistantSaver.playerData.stationStats[i].active == true)
                     {
-                        StationData.stations[i].active = false;
-                        StationData.stations[i].discovered = true;
+                        PersistantSaver.playerData.stationStats[i].active = false;
+                        PersistantSaver.playerData.stationStats[i].discovered = true;
                         SceneManager.LoadScene(StationData.stations[i].scene);
                         break;
                     }

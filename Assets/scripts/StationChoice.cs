@@ -15,21 +15,13 @@ public class StationChoice : MonoBehaviour {
 
     public void setStations()
     {
-        if (!tGTS.isOn) StationData.stations[0].active = false;
-        if (!tINK.isOn) StationData.stations[1].active = false;
-        if (!tINT.isOn) StationData.stations[2].active = false;
-        if (!tLMG.isOn) StationData.stations[3].active = false;
-        if (!tKIK.isOn) StationData.stations[4].active = false;
+        if (!tGTS.isOn) PersistantSaver.playerData.stationStats[0].active = false;
+        if (!tINK.isOn) PersistantSaver.playerData.stationStats[1].active = false;
+        if (!tINT.isOn) PersistantSaver.playerData.stationStats[2].active = false;
+        if (!tLMG.isOn) PersistantSaver.playerData.stationStats[3].active = false;
+        if (!tKIK.isOn) PersistantSaver.playerData.stationStats[4].active = false;
 
-        PersistantSaver.saveActiveStations();
         PersistantSaver.saveToHardDrive();
     }
-
-    public static void debugStations()
-    {
-        foreach (StationData.stationInfo si in StationData.stations)
-        {
-            Debug.Log(si.str + ": active=" + si.active);
-        }
-    }
+    
 }

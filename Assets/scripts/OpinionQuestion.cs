@@ -11,17 +11,15 @@ public class OpinionQuestion : MonoBehaviour {
 
     public void opinionPro()
     {
-        StationData.stations[stationNum].opinion = StationData.Opinion.PRO;
-        PersistantSaver.saveOpinions();
-        PersistantSaver.saveToHardDrive();
+        PersistantSaver.playerData.stationStats[stationNum].opinion = PersistantSaver.Opinion.PRO;
+        //PersistantSaver.saveToHardDrive();
         SceneManager.LoadScene(nextScene);
     }
 
     public void opinionContra()
     {
-        StationData.stations[stationNum].opinion = StationData.Opinion.CONTRA;
-        PersistantSaver.saveOpinions();
-        PersistantSaver.saveToHardDrive();
+        PersistantSaver.playerData.stationStats[stationNum].opinion = PersistantSaver.Opinion.CONTRA;
+        //PersistantSaver.saveToHardDrive();
         SceneManager.LoadScene(nextScene);
     }
 

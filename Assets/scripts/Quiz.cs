@@ -26,13 +26,12 @@ public class Quiz : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        StationData.stations[quizData.station].discovered = true;
-        PersistantSaver.saveDiscoveredStations();
+        PersistantSaver.playerData.stationStats[quizData.station].discovered = true;
         
-        currentQuestion = PersistantSaver.getCurrentQuestion() + 1;
+        currentQuestion = PersistantSaver.playerData.currentQuestion + 1;
         if (currentQuestion > quizData.questions.Length)
         {
-            PersistantSaver.setCurrentQuestion(-1);
+            PersistantSaver.playerData.currentQuestion = -1;
             SceneManager.LoadScene(nextScene);
         }
 
@@ -44,24 +43,7 @@ public class Quiz : MonoBehaviour {
         }
 
         PersistantSaver.saveToHardDrive();
-        //delegateButtons();
     }
-
-    /*
-    void delegateButtons()
-    {
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            if (i == correctButton) buttons[i].onClick.AddListener(delegate { CorrectClicked(i); });
-            else
-            {
-                Debug.Log("Current i: " + i);
-                buttons[i].onClick.AddListener(delegate { InCorrectClicked(i); });
-            }
-
-        }
-    }
-    */
 
     void FillQuiz(QuizData.Question question)
     {
@@ -87,12 +69,18 @@ public class Quiz : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeSpent += Time.deltaTime;
+        if (interactable)
+        {
+            timeSpent += Time.deltaTime;
+            timer.text = (time - timeSpent).ToString("F0");
+        }
         if (timeSpent > time)
         {
-            timeSpent = time;
+            timer.text = "0";
+            StartCoroutine(correctButtonBlink());
+            StartCoroutine(ChangeQuestion());
         }
-        timer.text = (time - timeSpent).ToString("F0");
+        
     }
 
     public void onButtonClick(Button but)
@@ -144,15 +132,17 @@ public class Quiz : MonoBehaviour {
 
         if (currentQuestion >= quizData.questions.Length)
         {
-            PersistantSaver.setCurrentQuestion(-1);
-            PersistantSaver.setCurrentScene(nextScene);
+            PersistantSaver.playerData.currentQuestion = -1;
+            PersistantSaver.playerData.currentScene = nextScene;
+            PersistantSaver.saveToHardDrive();
             yield return new WaitForSeconds(waitChangeTime);
             SceneManager.LoadScene(nextScene);
         }
 
         else
         {
-            PersistantSaver.setCurrentQuestion(currentQuestion);
+            PersistantSaver.playerData.currentQuestion = currentQuestion;
+            PersistantSaver.saveToHardDrive();
             yield return new WaitForSeconds(waitChangeTime);
             timeSpent = 0.0f;
             foreach(Button but in buttons)

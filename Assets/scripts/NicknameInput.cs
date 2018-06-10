@@ -22,7 +22,7 @@ public class NicknameInput : MonoBehaviour {
         else
         {
             Debug.Log("New nickname: " + inpF.text);
-            PersistantSaver.setNick(inpF.text);
+            PersistantSaver.playerData.nickname = inpF.text;
             SceneManager.LoadScene(scene);
         }
     }

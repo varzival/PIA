@@ -17,14 +17,15 @@ public class showOpinions : MonoBehaviour {
 
         for (int i = 0; i<texts.Length; i++)
         {
-            if (StationData.stations[i].opinion == StationData.Opinion.PRO)
+            if (PersistantSaver.playerData.stationStats[i].opinion == PersistantSaver.Opinion.PRO)
             {                
                 texts[i].text = StationData.stations[i].opinionQuestion;
                 opinionTexts[i].text = "JA";
                 opinionTexts[i].color = proColor;
             }
-            else if (StationData.stations[i].opinion == StationData.Opinion.CONTRA)
+            else if (PersistantSaver.playerData.stationStats[i].opinion == PersistantSaver.Opinion.CONTRA)
             {
+                texts[i].text = StationData.stations[i].opinionQuestion;
                 opinionTexts[i].text = "NEIN";
                 opinionTexts[i].color = contraColor;
             }

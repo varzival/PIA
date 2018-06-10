@@ -30,7 +30,7 @@ public class pointBars : MonoBehaviour {
         }
 
 
-        int[] points = PersistantSaver.Points;
+        int[] points = PersistantSaver.playerData.points;
         int pointSum = 0;
         for (int i = 0; i < barFulls.Length; i++)
         {
@@ -45,7 +45,7 @@ public class pointBars : MonoBehaviour {
 
         for (int i = 0; i < texts.Length; i++)
         {
-            if (!StationData.stations[i].discovered)
+            if (!PersistantSaver.playerData.stationStats[i].discovered)
             {
                 texts[i].text = "???";
             }
