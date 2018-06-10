@@ -6,6 +6,7 @@ using System.Text;
 using System;
 using UnityEngine;
 
+
 public class PersistantSaver {
 
     public struct PlayerData
@@ -92,6 +93,8 @@ public class PersistantSaver {
         playerData.points = new int[5];
         playerData.stationOrder = new int[5];
         playerData.nickname = "nick";
+        playerData.currentScene = "Intro";
+        playerData.currentQuestion = -1;
         loadAll();
     }
 
@@ -117,6 +120,7 @@ public class PersistantSaver {
         saveNick();
         saveCurrentQuestion();
         saveDiscoveredStations();
+        saveOpinions();
         saveToHardDrive();
     }
 
@@ -135,6 +139,16 @@ public class PersistantSaver {
         {
             if (StationData.stations[i].active) PlayerPrefs.SetString("sa_" + i, "t");
             else PlayerPrefs.SetString("sa_" + i, "f");
+        }
+    }
+
+    public static void saveOpinions()
+    {
+        for (int i = 0; i < playerData.stationOrder.Length; i++)
+        {
+            if (StationData.stations[i].opinion == StationData.Opinion.PRO) PlayerPrefs.SetString("sop_" + i, "p");
+            else if (StationData.stations[i].opinion == StationData.Opinion.CONTRA) PlayerPrefs.SetString("sop_" + i, "c");
+            else PlayerPrefs.SetString("sop_" + i, "n");
         }
     }
 
@@ -219,6 +233,20 @@ public class PersistantSaver {
                     createNewSave();
                     return;
                 }
+
+                v = PlayerPrefs.GetString("sop_" + i, "err");
+                if (v.Equals("t"))
+                    StationData.stations[i].opinion = StationData.Opinion.PRO;
+                else if (v.Equals("f"))
+                    StationData.stations[i].opinion = StationData.Opinion.CONTRA;
+                else if (v.Equals("n"))
+                    StationData.stations[i].opinion = StationData.Opinion.NONE;
+                else
+                {
+                    Debug.Log("Could not read opinions.");
+                    createNewSave();
+                    return;
+                }
             }
 
             playerData.nickname = PlayerPrefs.GetString("nickname", "nick");
@@ -255,6 +283,8 @@ public class PersistantSaver {
         playerData.nickname = "nick";
         playerData.currentQuestion = -1;
 
+        StationData.populateStations();
+
         saveAll();
     }
     /*
@@ -286,10 +316,25 @@ public class PersistantSaver {
         sb.Remove(sb.ToString().Length - 1, 1);
         sb.Append("cs_");
         sb.Append(playerData.currentScene);
+
         sb.Append("sa_");
         for (int i = 0; i < StationData.stations.Length; i++)
         {
             sb.Append(StationData.stations[i].active + ".");
+        }
+        sb.Remove(sb.ToString().Length - 1, 1);
+
+        sb.Append("sd_");
+        for (int i = 0; i < StationData.stations.Length; i++)
+        {
+            sb.Append(StationData.stations[i].discovered + ".");
+        }
+        sb.Remove(sb.ToString().Length - 1, 1);
+
+        sb.Append("sop_");
+        for (int i = 0; i < StationData.stations.Length; i++)
+        {
+            sb.Append(StationData.stations[i].opinion + ".");
         }
         sb.Remove(sb.ToString().Length - 1, 1);
 

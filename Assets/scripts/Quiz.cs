@@ -15,8 +15,7 @@ public class Quiz : MonoBehaviour {
     public Color wrongColor;
     public QuizData quizData;
     public string nextScene;
-
-    private int questionCounter = 0;
+    
     private int correctButton;
     private float timeSpent = 0.0f;
     private int currentQuestion = 0;
@@ -26,11 +25,10 @@ public class Quiz : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        /*
-        timer.type = Image.Type.Filled;
-        timer.fillMethod = Image.FillMethod.Radial360;
-        timer.fillAmount = 1.0f;
-        */
+
+        StationData.stations[quizData.station].discovered = true;
+        PersistantSaver.saveDiscoveredStations();
+        
         currentQuestion = PersistantSaver.getCurrentQuestion() + 1;
         if (currentQuestion > quizData.questions.Length)
         {
@@ -44,8 +42,8 @@ public class Quiz : MonoBehaviour {
 
             FillQuiz(quizData.questions[currentQuestion]);
         }
-        
 
+        PersistantSaver.saveToHardDrive();
         //delegateButtons();
     }
 

@@ -27,5 +27,8 @@ EditorBuildSettings:
     path: Assets/scenes/GTSQuiz.unity
     guid: f1fa99c2f353e2b41a55d8a3c00c7e28
   - enabled: 1
+    path: Assets/scenes/GTSOpinion.unity
+    guid: 341e8622098a74c47887f05b9946da6c
+  - enabled: 1
     path: Assets/scenes/Summary.unity
     guid: 92915e976491e754aa260775bcfdbe47

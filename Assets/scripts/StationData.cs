@@ -15,6 +15,8 @@ public class StationData {
         public bool discovered;
         public tip tips;
         public int maxPoints;
+        public Opinion opinion;
+        public string opinionQuestion;
     }
 
     public struct tip
@@ -22,6 +24,13 @@ public class StationData {
         public string t1;
         public string t2;
         public string t3;
+    }
+
+    public enum Opinion
+    {
+        PRO,
+        CONTRA,
+        NONE
     }
 
     public static stationInfo[] stations;
@@ -35,11 +44,17 @@ public class StationData {
         tip tipLMG = new tip { t1 = "LMG T1", t2 = "LMG t2", t3 = "LMG t3" };
         tip tipKIK = new tip { t1 = "KIK T1", t2 = "KIK t2", t3 = "KIK t3" };
 
-        stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", active=true, discovered=false, tips=tipGTS, maxPoints=3 };
-        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", active = true, discovered = false, tips = tipINK, maxPoints = 5 };
-        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", discovered = false, active = true, tips = tipINT, maxPoints = 5 };
-        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", discovered = false, active = true, tips = tipLMG, maxPoints = 5 };
-        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", discovered = false, active = true, tips = tipKIK, maxPoints = 5 };
+        string qGTS = "Findet Ihr, dass Bayern vermehrt in den Ausbau von Ganztagsschulen investieren sollte?";
+        string qINK = "Findest Ihr, dass beeinträchtigte Schüler, anstatt in speziell ausgelegten Förderschulen, besser in herkömmlichen Schulen unterrichtet werden sollen?";
+        string qINT = "Hältst du Zuwandererklassen für die bessere Unterrichtsform von ausländischen Schülern als Integrationsklassen?";
+        string qKIK = "Sollte in bayrischen Klassenzimmern ein Kreuz hängen?";
+        string qLMG = "Findest Du, es sollte eine Vorschrift geben, die den Schülern vorschreibt, was sie essen sollen, anstatt jeden Schüler für sich selbst entscheiden zu lassen?";
+
+        stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", active=true, discovered=false, tips=tipGTS, maxPoints=3, opinion=Opinion.NONE, opinionQuestion=qGTS };
+        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", active = true, discovered = false, tips = tipINK, maxPoints = 5, opinion = Opinion.NONE, opinionQuestion=qINK };
+        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", discovered = false, active = true, tips = tipINT, maxPoints = 5, opinion = Opinion.NONE, opinionQuestion=qINT };
+        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", discovered = false, active = true, tips = tipLMG, maxPoints = 5, opinion = Opinion.NONE, opinionQuestion=qLMG };
+        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", discovered = false, active = true, tips = tipKIK, maxPoints = 5, opinion = Opinion.NONE, opinionQuestion=qKIK };
 
         stations = new stationInfo[] { ganztagsschulen, inklusion, integration, lmgesetze, krimklzimmer };
 
