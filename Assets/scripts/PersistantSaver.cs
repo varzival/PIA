@@ -64,7 +64,7 @@ public class PersistantSaver {
         for (int i = 0; i < StationData.getStationCount(); i++)
         {
             int num = playerData.stationOrder[i];
-            if (playerData.stationStats[i].active) return num;
+            if (playerData.stationStats[num].active) return num;
         }
         return -1;
     }
@@ -114,24 +114,25 @@ public class PersistantSaver {
     public static void createNewSave()
     {
         Debug.Log("Creating new save.");
+        int stationCount = StationData.getStationCount();
         
         playerData.nickname = "nick";
         playerData.currentScene = "Intro_StationChoice";
         playerData.currentQuestion = -1;
 
-        playerData.points = new int[5];
+        playerData.points = new int[stationCount];
         for (int i = 0; i < playerData.points.Length; i++)
             playerData.points[i] = 0;
 
         //Randomize stations
-        playerData.stationOrder = new int[5];
+        playerData.stationOrder = new int[stationCount];
         for (int i = 0; i < playerData.stationOrder.Length; i++)
         {
             playerData.stationOrder[i] = i;
         }
         Shuffle(playerData.stationOrder);
 
-        playerData.stationStats = new StationStats[5];
+        playerData.stationStats = new StationStats[stationCount];
         for (int i = 0; i<playerData.stationStats.Length; i++)
         {
             playerData.stationStats[i].active = true;
@@ -145,9 +146,9 @@ public class PersistantSaver {
 
     public static void init()
     {
+        deleteEverything de = new deleteEverything();
+        de.delete();
         loadAll();
-        //deleteEverything de = new deleteEverything();
-        //de.delete();
     }
 
     private static string generateHash(string data)

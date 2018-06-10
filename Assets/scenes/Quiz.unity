@@ -229,7 +229,7 @@ MonoBehaviour:
   - {fileID: 652688085}
   correctColor: {r: 0.15862082, g: 1, b: 0, a: 1}
   wrongColor: {r: 1, g: 0, b: 0, a: 1}
-  nextScene: GTSOpinion
+  nextScene: Opinion
 --- !u!1001 &884060251
 Prefab:
   m_ObjectHideFlags: 0
@@ -327,22 +327,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114788102972918628, guid: 9f2a2971f4b22e243bbd650cd8cea29c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 838942941}
-    - target: {fileID: 114427551606736556, guid: 9f2a2971f4b22e243bbd650cd8cea29c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 838942941}
     - target: {fileID: 114580503740265458, guid: 9f2a2971f4b22e243bbd650cd8cea29c,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 838942941}
     - target: {fileID: 114123500057148662, guid: 9f2a2971f4b22e243bbd650cd8cea29c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 838942941}
+    - target: {fileID: 114788102972918628, guid: 9f2a2971f4b22e243bbd650cd8cea29c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 838942941}
+    - target: {fileID: 114427551606736556, guid: 9f2a2971f4b22e243bbd650cd8cea29c,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

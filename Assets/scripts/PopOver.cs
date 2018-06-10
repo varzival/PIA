@@ -10,6 +10,7 @@ public class PopOver : MonoBehaviour {
     public GameObject[] buttons;
     public GameObject backButton;
     public GameObject overlay;
+    public Text[] texts;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,15 @@ public class PopOver : MonoBehaviour {
         foreach (GameObject po in popOvers)
         {
             po.SetActive(false);
+        }
+
+        int station = PersistantSaver.getCurrentStation();
+        if (station == -1) return;
+        for (int i = 0; i<texts.Length; i++)
+        {
+            if (i == 0) texts[i].text = StationData.stations[station].tips.t1;
+            else if (i == 1) texts[i].text = StationData.stations[station].tips.t2;
+            if (i == 2) texts[i].text = StationData.stations[station].tips.t3;
         }
 
         backButton.SetActive(false);

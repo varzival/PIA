@@ -15,11 +15,18 @@ public class QRScannerSceneChange : MonoBehaviour {
     //public AudioSource Audio;
     private float RestartTime;
 
-    //public string nextScene;
+    public string endScene;
 
     // Use this for initialization
     void Start()
     {
+        if (PersistantSaver.getCurrentStation() == -1)
+        {
+            SceneManager.LoadScene(endScene);
+            return;
+        }
+
+
         // Create a basic scanner
         BarcodeScanner = new Scanner();
         BarcodeScanner.Camera.Play();
@@ -40,6 +47,13 @@ public class QRScannerSceneChange : MonoBehaviour {
         };
     }
 
+    public static void changeToCurrentStation()
+    {
+        int station = PersistantSaver.getCurrentStation();
+        PersistantSaver.playerData.stationStats[station].discovered = true;
+        SceneManager.LoadScene(StationData.stations[station].scene);
+    }
+
     /// <summary>
 	/// Start a scan and wait for the callback (wait 1s after a scan success to avoid scanning multiple time the same element)
 	/// </summary>
@@ -56,25 +70,11 @@ public class QRScannerSceneChange : MonoBehaviour {
             */
             RestartTime += Time.realtimeSinceStartup + 1f;
 
-        //bool found = false;
-        for (int i = 0; i < StationData.stations.Length; i++)
-        {
-            if (StationData.stations[i].qrcodestring.Equals(barCodeValue))
-                {
-                    //found = true;
-                    if (PersistantSaver.playerData.stationStats[i].active == true)
-                    {
-                        PersistantSaver.playerData.stationStats[i].active = false;
-                        PersistantSaver.playerData.stationStats[i].discovered = true;
-                        SceneManager.LoadScene(StationData.stations[i].scene);
-                        break;
-                    }
-                    else
-                    {
-                        Debug.Log("Station inactive");
-                        break;
-                    }
-                }
+            //bool found = false;
+            int currentStation = PersistantSaver.getCurrentStation();
+            if (StationData.stations[currentStation].qrcodestring.Equals(barCodeValue))
+            {
+                changeToCurrentStation();
             }
 
             // Feedback

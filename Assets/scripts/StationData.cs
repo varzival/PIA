@@ -83,10 +83,10 @@ public class StationData {
         string qLMG = "Findest Du, es sollte eine Vorschrift geben, die den Schülern vorschreibt, was sie essen sollen, anstatt jeden Schüler für sich selbst entscheiden zu lassen?";
 
         stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", tips=tipGTS, opinionQuestion=qGTS, quizQuestions= new Question[] { q1GTS, q2GTS, q3GTS, q4GTS } };
-        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "INKInfo", qrcodestring = "inkl", tips = tipINK, opinionQuestion=qINK, quizQuestions = new Question[] { q1INK, q2INK, q3INK, q4INK, q5INK, q6INK, q7INK} };
-        stationInfo integration = new stationInfo { str = "Integration", scene = "INTInfo", qrcodestring = "integr", tips = tipINT, opinionQuestion=qINT, quizQuestions = new Question[] { q1INT, q2INT, q3INT, q4INT } };
-        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "LMGInfo", qrcodestring = "lmgstze", tips = tipLMG, opinionQuestion=qLMG, quizQuestions = new Question[] { q1LMG, q2LMG, q3LMG, q4LMG, q5LMG } };
-        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "KIKInfo", qrcodestring = "krimk", tips = tipKIK, opinionQuestion=qKIK, quizQuestions = new Question[] { q1KIK, q2KIK, q3KIK, q4KIK, q5KIK } };
+        stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "GTSInfo", qrcodestring = "inkl", tips = tipINK, opinionQuestion=qINK, quizQuestions = new Question[] { q1INK, q2INK, q3INK, q4INK, q5INK, q6INK, q7INK} };
+        stationInfo integration = new stationInfo { str = "Integration", scene = "GTSInfo", qrcodestring = "integr", tips = tipINT, opinionQuestion=qINT, quizQuestions = new Question[] { q1INT, q2INT, q3INT, q4INT } };
+        stationInfo lmgesetze = new stationInfo { str = "Lebensmittelgesetze", scene = "GTSInfo", qrcodestring = "lmgstze", tips = tipLMG, opinionQuestion=qLMG, quizQuestions = new Question[] { q1LMG, q2LMG, q3LMG, q4LMG, q5LMG } };
+        stationInfo krimklzimmer = new stationInfo { str = "Kreuz im Klassenzimmer", scene = "GTSInfo", qrcodestring = "krimk", tips = tipKIK, opinionQuestion=qKIK, quizQuestions = new Question[] { q1KIK, q2KIK, q3KIK, q4KIK, q5KIK } };
 
         stations = new stationInfo[] { ganztagsschulen, inklusion, integration, lmgesetze, krimklzimmer };
     }
