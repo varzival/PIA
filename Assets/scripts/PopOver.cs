@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using System;
 
 public class PopOver : MonoBehaviour {
 
     public GameObject[] popOvers;
     public GameObject[] buttons;
+    public GameObject lock1;
+    public GameObject lock2;
+    public Text counter1;
+    public Text counter2;
+    public int waittimeseconds1;
+    public int waittimeseconds2;
     public GameObject backButton;
     public GameObject overlay;
     public Text[] texts;
+    private DateTime startTime;
 
 	// Use this for initialization
 	void Start () {
 
-        foreach (GameObject but in buttons)
+        startTime = DateTime.Now;
+        lock1.SetActive(true);
+        lock2.SetActive(true);
+
+        buttons[0].SetActive(true);
+        for (int i = 1; i < buttons.Length; i++)
         {
-            but.SetActive(true);
+            buttons[i].SetActive(false);
         }
 
         foreach (GameObject po in popOvers)
@@ -51,11 +64,55 @@ public class PopOver : MonoBehaviour {
 
     public void back()
     {
-        Start();
+        buttons[0].SetActive(true);
+        buttons[1].SetActive(!lock1.activeSelf);
+        buttons[2].SetActive(!lock2.activeSelf);
+
+        foreach (GameObject po in popOvers)
+        {
+            po.SetActive(false);
+        }
+
+        backButton.SetActive(false);
+        overlay.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        DateTime now = DateTime.Now;
+        TimeSpan diff = now - startTime;
+        TimeSpan waittime1 = new TimeSpan(0, 0, waittimeseconds1);
+        TimeSpan waittime2 = new TimeSpan(0, 0, waittimeseconds2);
+        TimeSpan timeLeft1 = waittime1 - diff;
+        TimeSpan timeLeft2 = waittime2 - diff;
+        if (lock1.activeSelf)
+        {
+            if (timeLeft1.CompareTo(TimeSpan.Zero) < 0)
+            {
+                counter1.text = "";
+                lock1.SetActive(false);
+                buttons[1].SetActive(true);
+            }
+            else
+            {
+                counter1.text = timeLeft1.Minutes + ":" + timeLeft1.Seconds;
+            } 
+        }
+        if (lock2.activeSelf)
+        {
+            if (timeLeft2.CompareTo(TimeSpan.Zero) < 0)
+            {
+                counter2.text = "";
+                lock2.SetActive(false);
+                buttons[2].SetActive(true);
+            }
+            else
+            {
+                counter2.text = timeLeft2.Minutes + ":" + timeLeft2.Seconds;
+            }
+        }
+        
+
+    }
 }

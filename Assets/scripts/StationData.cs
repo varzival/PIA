@@ -38,11 +38,11 @@ public class StationData {
 	// Use this for initialization
 	public static void populateStations () {
 
-        tip tipGTS = new tip { t1 = "GTS T1", t2 = "GTS t2", t3 = "GTS t3" };
-        tip tipINK = new tip { t1 = "INK T1", t2 = "INK t2", t3 = "INK t3" };
+        tip tipGTS = new tip { t1 = "Wie lange Pia heute wohl arbeiten wird?", t2 = "Mist, Pia hat ihre Armbanduhr vergessen. Was nun?", t3 = "Der Code befindet sich an einer Uhr!" };
+        tip tipINK = new tip { t1 = "Pia hat ein paar anstrengende Arbeitstage hinter sich und mittlerweile müde Beine. Und jetzt noch diese lange Treppe im Parlamentsgebäude, puuuuhh....", t2 = "Pia´s Kollege/-in hat sich leider den Knöchel verstaucht. Wie kommt sie nun in den 3. Stock zu dem nächsten Termin? Pia hat eine gute Idee ...", t3 = "Der Code befindet sich an einem Aufzug! (oder einer großen Treppe)" };
         tip tipINT = new tip { t1 = "INT T1", t2 = "INT t2", t3 = "INT t3" };
-        tip tipLMG = new tip { t1 = "LMG T1", t2 = "LMG t2", t3 = "LMG t3" };
-        tip tipKIK = new tip { t1 = "KIK T1", t2 = "KIK t2", t3 = "KIK t3" };
+        tip tipLMG = new tip { t1 = "Was darf nach einer langen Besprechung nicht fehlen? Genau, ein kleines Päuschen in ...", t2 = "Nach so vielen anregenden Diskussionen hat Pia erstmal Hunger und Durst.", t3 = "Der Code befindet sich in der Mensa / beim Pausenverkauf!" };
+        tip tipKIK = new tip { t1 = "Oh mein Gott, das war aber ein intensives Meeting!", t2 = "In dem Besprechungszimmer hängt aber ein schönes Bild an der Wand. Was sieht Pia dort vielleicht noch?", t3 = "Der Code befindet sich am Kreuz im Klassenzimmer! (oder an der Stelle, wo es normalerweise hängen würde)" };
 
         Question q1GTS = new Question { quizText = "Das Staatsministerium für Bildung und Kultus, welches in Bayern für die Initiation und Koordination der Ganztagesschulwn verantwortlich ist, findet man wo?", correctText = "München", wrongTexts = new string[] { "Fürth", "Augsburg", "Nürnberg" } };
         Question q2GTS = new Question { quizText = "Ein Grund gegen Ganztagesschulen ist nicht:", correctText = "Die lange Anwesenheit in der Schule festigt Freundschaften.", wrongTexts = new string[] { "Opfer von Mobbing sind ihren Peinigern noch länger ausgesetzt.", "Für außerschulischen Musik-Unterricht bleibt nur noch wenig Zeit.", "Die Erziehung durch die Eltern nimmt einen kleineren Stellenwert ein." } };
@@ -77,10 +77,10 @@ public class StationData {
         Question q5LMG = new Question { quizText = "Wofür gibt es in Deutschland die Trinkwasserverordnung?", correctText = "Um die Qualität des Trinkwassers zu schützen und verbessern.", wrongTexts = new string[] { "Um den Elektrolytgehalt im Trinkwasser vorzuschreiben.", "Um festzulegen, wie viel Wasser jeder Bürger pro Tag verbrauchen darf.", "Um die From der Wasserhähne in Deutschland zu normen." } };
 
         string qGTS = "Findet Ihr, dass Bayern vermehrt in den Ausbau von Ganztagsschulen investieren sollte?";
-        string qINK = "Findest Ihr, dass beeinträchtigte Schüler, anstatt in speziell ausgelegten Förderschulen, besser in herkömmlichen Schulen unterrichtet werden sollen?";
-        string qINT = "Hältst du Zuwandererklassen für die bessere Unterrichtsform von ausländischen Schülern als Integrationsklassen?";
-        string qKIK = "Sollte in bayrischen Klassenzimmern ein Kreuz hängen?";
-        string qLMG = "Findest Du, es sollte eine Vorschrift geben, die den Schülern vorschreibt, was sie essen sollen, anstatt jeden Schüler für sich selbst entscheiden zu lassen?";
+        string qINK = "Findet Ihr, dass beeinträchtigte Schüler, anstatt in speziell ausgelegten Förderschulen, besser in herkömmlichen Schulen unterrichtet werden sollen?";
+        string qINT = "Haltet Ihr Zuwandererklassen für die bessere Unterrichtsform von ausländischen Schülern als Integrationsklassen?";
+        string qKIK = "Findet Ihr, dass in bayrischen Klassenzimmern ein Kreuz hängen sollte?";
+        string qLMG = "Findet Ihr, es sollte eine Vorschrift geben, die den Schülern vorschreibt, was sie essen sollen, anstatt jeden Schüler für sich selbst entscheiden zu lassen?";
 
         stationInfo ganztagsschulen = new stationInfo { str = "Ganztagsschulen", scene = "GTSInfo", qrcodestring = "gts", tips=tipGTS, opinionQuestion=qGTS, quizQuestions= new Question[] { q1GTS, q2GTS, q3GTS, q4GTS } };
         stationInfo inklusion = new stationInfo { str = "Inklusion", scene = "GTSInfo", qrcodestring = "inkl", tips = tipINK, opinionQuestion=qINK, quizQuestions = new Question[] { q1INK, q2INK, q3INK, q4INK, q5INK, q6INK, q7INK} };
