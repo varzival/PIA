@@ -9,6 +9,7 @@ public class VideoPauseButton : MonoBehaviour {
     public VideoPlayer vp;
     public GameObject pauseImage;
     public videoSetup vs;
+    public Text pauseText;
 
     void OnDisable()
     {
@@ -35,12 +36,14 @@ public class VideoPauseButton : MonoBehaviour {
         if (vp.isPlaying)
         {
             vp.Pause();
-            pauseImage.SetActive(true);
+            pauseText.text = "Pausiert";
+            //pauseImage.SetActive(true);
         }
         else
         {
             vp.Play();
-            pauseImage.SetActive(false);
+            pauseText.text = "";
+            //pauseImage.SetActive(false);
         }
     }
 }

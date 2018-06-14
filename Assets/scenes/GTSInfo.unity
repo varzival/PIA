@@ -1268,6 +1268,16 @@ Prefab:
       value: 
       objectReference: {fileID: 32900000, guid: e86ae120d2083794dbb1351bf2f59bb6,
         type: 3}
+    - target: {fileID: 114652553803929916, guid: 08ba9b5461e8d50488b308fd6ea577ac,
+        type: 2}
+      propertyPath: m_Text
+      value: Ganztagsschulen - Video 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114801922481493382, guid: 08ba9b5461e8d50488b308fd6ea577ac,
+        type: 2}
+      propertyPath: m_Text
+      value: Ganztagsschulen - Video 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08ba9b5461e8d50488b308fd6ea577ac, type: 2}
   m_IsPrefabParent: 0
@@ -1472,6 +1482,18 @@ Prefab:
       value: 
       objectReference: {fileID: 32900000, guid: 168446c0b90443848897172febc12b18,
         type: 3}
+    - target: {fileID: 114652553803929916, guid: 08ba9b5461e8d50488b308fd6ea577ac,
+        type: 2}
+      propertyPath: m_Text
+      value: Ganztagsschulen - Video 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114801922481493382, guid: 08ba9b5461e8d50488b308fd6ea577ac,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Ganztagsschulen - Video 2
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08ba9b5461e8d50488b308fd6ea577ac, type: 2}
   m_IsPrefabParent: 0
