@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9527c4e66a549e40af69247228896da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 20
+  timeInSeconds: 20
   timer: {fileID: 1599672518}
   quizText: {fileID: 588161938}
   quizCaption: {fileID: 884060252}

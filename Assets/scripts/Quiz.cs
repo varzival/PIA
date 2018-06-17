@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Quiz : MonoBehaviour {
 
-    public float time;
+    public int timeInSeconds;
     public Text timer;
     public Text quizText;
     public Text quizCaption;
@@ -16,7 +16,7 @@ public class Quiz : MonoBehaviour {
     public string nextScene;
     
     private int correctButton;
-    private float timeSpent = 0.0f;
+    private System.DateTime startTime;
     private int currentQuestion = 0;
     private float waitChangeTime = 2.0f;
     private bool interactable = true;
@@ -39,7 +39,8 @@ public class Quiz : MonoBehaviour {
 
         else
         {
-            timer.text = time.ToString("F0");
+            startTime = System.DateTime.Now;
+            timer.text = timeInSeconds+"";
 
             FillQuiz(StationData.stations[station].quizQuestions[currentQuestion]);
         }
@@ -49,7 +50,6 @@ public class Quiz : MonoBehaviour {
 
     void FillQuiz(StationData.Question question)
     {
-        interactable = true;
         quizText.text = question.quizText;
         quizCaption.text = "Frage " + (currentQuestion + 1);
         correctButton = 0;
@@ -66,21 +66,27 @@ public class Quiz : MonoBehaviour {
         {
             buttons[i+1].GetComponentInChildren<Text>().text = question.wrongTexts[i];
         }
-        //delegateButtons();
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+
         if (interactable)
         {
-            timeSpent += Time.deltaTime;
-            timer.text = (time - timeSpent).ToString("F0");
-        }
-        if (timeSpent > time)
-        {
-            timer.text = "0";
-            StartCoroutine(correctButtonBlink());
-            StartCoroutine(ChangeQuestion());
+            System.DateTime now = System.DateTime.Now;
+            System.TimeSpan diff = now - startTime;
+
+            if (diff.Seconds > timeInSeconds)
+            {
+                timer.text = "0";
+                StartCoroutine(correctButtonBlink());
+                StartCoroutine(ChangeQuestion());
+            }
+            else
+            {
+                timer.text = timeInSeconds - diff.Seconds + "";
+            }
         }
         
     }
@@ -146,7 +152,7 @@ public class Quiz : MonoBehaviour {
             PersistantSaver.playerData.currentQuestion = currentQuestion;
             PersistantSaver.saveToHardDrive();
             yield return new WaitForSeconds(waitChangeTime);
-            timeSpent = 0.0f;
+            
             foreach(Button but in buttons)
             {
                 but.gameObject.GetComponent<Image>().color = Color.white;
@@ -154,7 +160,7 @@ public class Quiz : MonoBehaviour {
 
             FillQuiz(StationData.stations[station].quizQuestions[currentQuestion]);
             interactable = true;
-            
+            startTime = System.DateTime.Now;
 
         }
 

@@ -21,8 +21,20 @@ EditorBuildSettings:
     path: Assets/scenes/QRScanner.unity
     guid: 14a3c3b0269431440ba5ad5524ce338c
   - enabled: 1
-    path: Assets/scenes/GTSInfo.unity
+    path: Assets/scenes/info/GTSInfo.unity
     guid: cf65b2e100871264685602b09a1eaa6b
+  - enabled: 1
+    path: Assets/scenes/info/INKInfo.unity
+    guid: c9d37cd622ec41d478e899d3b2e3d0dd
+  - enabled: 1
+    path: Assets/scenes/info/INTInfo.unity
+    guid: 173281ec4cab0614ba48356fa676517d
+  - enabled: 1
+    path: Assets/scenes/info/KIKInfo.unity
+    guid: 247259210e3f7284dbdfe99b99aacc73
+  - enabled: 1
+    path: Assets/scenes/info/LMGInfo.unity
+    guid: dcae56ee382721e469d72a49cc6bd3bd
   - enabled: 1
     path: Assets/scenes/Quiz.unity
     guid: f1fa99c2f353e2b41a55d8a3c00c7e28

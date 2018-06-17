@@ -73,6 +73,11 @@ public class ServerRequester : MonoBehaviour
                 Debug.Log(req.downloadHandler.text);
                 showPopup("Spiel mit angegebener ID existiert nicht!");
             }
+            else if (req.responseCode == 211L)
+            {
+                Debug.Log(req.downloadHandler.text);
+                showPopup("Nickname ist bereits belegt!");
+            }
             else if (req.responseCode == 200L)
             {
                 showPopup("Account angelegt!");
