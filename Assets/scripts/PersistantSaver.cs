@@ -121,6 +121,7 @@ public class PersistantSaver {
         
         playerData.nickname = "nick";
         playerData.currentScene = "Intro_StationChoice";
+        //playerData.currentScene = "End";
         playerData.currentQuestion = -1;
         playerData.gameId = "ID";
 

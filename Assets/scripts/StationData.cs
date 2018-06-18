@@ -40,7 +40,7 @@ public class StationData {
 
         tip tipGTS = new tip { t1 = "Wie lange Pia heute wohl arbeiten wird?", t2 = "Mist, Pia hat ihre Armbanduhr vergessen. Was nun?", t3 = "Der Code befindet sich an einer Uhr!" };
         tip tipINK = new tip { t1 = "Pia hat ein paar anstrengende Arbeitstage hinter sich und mittlerweile müde Beine. Und jetzt noch diese lange Treppe im Parlamentsgebäude, puuuuhh....", t2 = "Pia´s Kollege/-in hat sich leider den Knöchel verstaucht. Wie kommt sie nun in den 3. Stock zu dem nächsten Termin? Pia hat eine gute Idee ...", t3 = "Der Code befindet sich an einem Aufzug! (oder einer großen Treppe)" };
-        tip tipINT = new tip { t1 = "INT T1", t2 = "INT t2", t3 = "INT t3" };
+        tip tipINT = new tip { t1 = "Jetzt hätte Pia aber Lust auf einen kleinen Ratsch mit Ihren Kollegen.", t2 = "Wo sind denn Pia´s Kollegen alle hin? Auf auf zum beliebten Abgeordneten-Treffpunkt...", t3 = "Der Code befindet sich im Pausenhof / Aufenthaltsraum." };
         tip tipLMG = new tip { t1 = "Was darf nach einer langen Besprechung nicht fehlen? Genau, ein kleines Päuschen in ...", t2 = "Nach so vielen anregenden Diskussionen hat Pia erstmal Hunger und Durst.", t3 = "Der Code befindet sich in der Mensa / beim Pausenverkauf!" };
         tip tipKIK = new tip { t1 = "Oh mein Gott, das war aber ein intensives Meeting!", t2 = "In dem Besprechungszimmer hängt aber ein schönes Bild an der Wand. Was sieht Pia dort vielleicht noch?", t3 = "Der Code befindet sich am Kreuz im Klassenzimmer! (oder an der Stelle, wo es normalerweise hängen würde)" };
 

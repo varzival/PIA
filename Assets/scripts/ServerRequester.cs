@@ -103,7 +103,6 @@ public class ServerRequester : MonoBehaviour
         sb.Remove(sb.Length - 1, 1);
         string pointstring = sb.ToString();
 
-        PersistantSaver.Opinion[] opinions = new PersistantSaver.Opinion[StationData.getStationCount()];
         sb = new StringBuilder();
         for (int i = 0; i < StationData.getStationCount(); i++)
         {
