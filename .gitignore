@@ -13,7 +13,7 @@ sysinfo.txt
 *.unitypackage
 
 /Assets/videos*
-/Assets/screens*
+/Assets/screens**
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
