@@ -6,12 +6,15 @@ using System.Text;
 using System;
 using UnityEngine;
 
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+
 public class PersistantSaver {
 
     [Serializable]
     public struct PlayerData
     {
         public string nickname;
+        public string gameId;
         public int[] points;
         public int[] stationOrder;
         public string currentScene;
@@ -118,7 +121,9 @@ public class PersistantSaver {
         
         playerData.nickname = "nick";
         playerData.currentScene = "Intro_StationChoice";
+        //playerData.currentScene = "End";
         playerData.currentQuestion = -1;
+        playerData.gameId = "ID";
 
         playerData.points = new int[stationCount];
         for (int i = 0; i < playerData.points.Length; i++)
@@ -146,17 +151,17 @@ public class PersistantSaver {
 
     public static void init()
     {
-        deleteEverything de = new deleteEverything();
-        de.delete();
+        //deleteEverything de = new deleteEverything();
+        //de.delete();
         loadAll();
     }
 
-    private static string generateHash(string data)
+    public static string generateHash(string data)
     {
         Debug.Log("Generating hash for data: " + data);
         byte[] byteData = Encoding.ASCII.GetBytes(data);
         SHA1 sha = new SHA1CryptoServiceProvider();
         byte[] hash = sha.ComputeHash(byteData);
-        return Encoding.ASCII.GetString(hash);
+        return new SoapHexBinary(hash).ToString().ToLower();
     }
 }
