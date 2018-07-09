@@ -14,7 +14,7 @@ public class PersistantSaver {
     public struct PlayerData
     {
         public string nickname;
-        public string gameId;
+        //public string gameId;
         public int[] points;
         public int[] stationOrder;
         public string currentScene;
@@ -123,7 +123,7 @@ public class PersistantSaver {
         playerData.currentScene = "Intro_StationChoice";
         //playerData.currentScene = "End";
         playerData.currentQuestion = -1;
-        playerData.gameId = "ID";
+        //playerData.gameId = "ID";
 
         playerData.points = new int[stationCount];
         for (int i = 0; i < playerData.points.Length; i++)

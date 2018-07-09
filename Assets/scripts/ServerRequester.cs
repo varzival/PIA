@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 public class ServerRequester : MonoBehaviour
 {
     public GameObject popup;
+	public GameObject idInputPopup;
+	public InputField idInput;
     public Text popupText;
     public float popupTime = 3.0f;
     public string nextScene;
@@ -27,6 +29,7 @@ public class ServerRequester : MonoBehaviour
 
     IEnumerator displayText(string text)
     {
+		idInputPopup.SetActive (false);
         popupText.text = text;
         popup.SetActive(true);
         yield return new WaitForSecondsRealtime(popupTime);
@@ -44,17 +47,21 @@ public class ServerRequester : MonoBehaviour
         SceneManager.LoadScene(nextScene);
     }
 
-
     public void sendPoints()
     {
-        StartCoroutine(UploadPoints());
+		if (idInput.text == null || idInput.text.Equals (""))
+			return;
+        StartCoroutine(UploadPoints(idInput.text));
     }
+
 
     public void signUp()
     {
-        StartCoroutine(UploadAccountData());
+        //StartCoroutine(UploadAccountData());
+		SceneManager.LoadScene(nextScene);
     }
-
+    
+	/*
     IEnumerator UploadAccountData()
     {
         string hash = PersistantSaver.generateHash(PersistantSaver.playerData.nickname + PersistantSaver.playerData.gameId + "super secret code");
@@ -91,8 +98,9 @@ public class ServerRequester : MonoBehaviour
         }
 
     }
+    */
 
-    IEnumerator UploadPoints()
+    IEnumerator UploadPoints(string gameId)
     {
         int[] points = PersistantSaver.playerData.points;
         StringBuilder sb = new StringBuilder();
@@ -126,9 +134,10 @@ public class ServerRequester : MonoBehaviour
         sb.Remove(sb.Length - 1, 1);
         string opstring = sb.ToString();
 
-        string hash = PersistantSaver.generateHash(PersistantSaver.playerData.nickname + PersistantSaver.playerData.gameId + pointstring + opstring + "super secret code");
-        UnityWebRequest req = UnityWebRequest.Get(adress + "/sendPoints?" + "points=" + pointstring + "&opinions=" + opstring + "&nick="+PersistantSaver.playerData.nickname + "&gameId=" + PersistantSaver.playerData.gameId + "&hash=" + hash);
+        string hash = PersistantSaver.generateHash(PersistantSaver.playerData.nickname + gameId + pointstring + opstring + "super secret code");
+		UnityWebRequest req = UnityWebRequest.Get(adress + "/sendPoints?" + "points=" + pointstring + "&opinions=" + opstring + "&nick="+PersistantSaver.playerData.nickname + "&gameId=" + gameId.ToLower() + "&hash=" + hash);
         yield return req.SendWebRequest();
+
         if (req.isNetworkError || req.isHttpError)
         {
             Debug.Log(req.downloadHandler.text);
@@ -139,7 +148,7 @@ public class ServerRequester : MonoBehaviour
             if (req.responseCode == 210L)
             {
                 Debug.Log(req.downloadHandler.text);
-                showPopup("Fehler beim Verschicken der Punkte.");
+                showPopup("Spiel mit angegebener ID existiert nicht!");
             }
             else if (req.responseCode == 200L)
             {
