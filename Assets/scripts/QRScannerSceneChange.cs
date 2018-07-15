@@ -17,6 +17,9 @@ public class QRScannerSceneChange : MonoBehaviour {
 
     public string endScene;
 
+    public GameObject iOSInput;
+    public InputField iOSInputField;
+
     // Use this for initialization
     void Start()
     {
@@ -26,7 +29,10 @@ public class QRScannerSceneChange : MonoBehaviour {
             return;
         }
 
-
+#if UNITY_IOS
+        iOSInput.SetActive(true);
+#else
+        iOSInput.SetActive(false);
         // Create a basic scanner
         BarcodeScanner = new Scanner();
         BarcodeScanner.Camera.Play();
@@ -45,6 +51,24 @@ public class QRScannerSceneChange : MonoBehaviour {
 
             RestartTime = Time.realtimeSinceStartup;
         };
+#endif
+    }
+
+    public void checkStationInput()
+    {
+        string inputValue = iOSInputField.text;
+
+        int currentStation = PersistantSaver.getCurrentStation();
+        if (StationData.stations[currentStation].qrcodestring.Equals(inputValue.ToLower()))
+        {
+            changeToCurrentStation();
+            return;
+        }
+        iOSInputField.text = "";
+        #if UNITY_ANDROID || UNITY_IOS
+            Handheld.Vibrate();
+        #endif
+
     }
 
     public static void changeToCurrentStation()
@@ -61,16 +85,8 @@ public class QRScannerSceneChange : MonoBehaviour {
     {
         BarcodeScanner.Scan((barCodeType, barCodeValue) => {
             BarcodeScanner.Stop();
-            /*
-            if (TextHeader.text.Length > 250)
-            {
-                TextHeader.text = "";
-            }
-            TextHeader.text += "Found: " + barCodeType + " / " + barCodeValue + "\n";
-            */
             RestartTime += Time.realtimeSinceStartup + 1f;
 
-            //bool found = false;
             int currentStation = PersistantSaver.getCurrentStation();
             if (StationData.stations[currentStation].qrcodestring.Equals(barCodeValue))
             {
@@ -80,9 +96,7 @@ public class QRScannerSceneChange : MonoBehaviour {
             // Feedback
             //Audio.Play();
 
-#if UNITY_ANDROID || UNITY_IOS
-            Handheld.Vibrate();
-#endif
+
         });
     }
 
@@ -91,6 +105,9 @@ public class QRScannerSceneChange : MonoBehaviour {
     /// </summary>
     void Update()
     {
+#if UNITY_IOS
+
+#else
         if (BarcodeScanner != null)
         {
             BarcodeScanner.Update();
@@ -102,10 +119,11 @@ public class QRScannerSceneChange : MonoBehaviour {
             StartScanner();
             RestartTime = 0;
         }
+#endif
     }
 
 
-    #region UI Buttons
+#region UI Buttons
 
     /*
     public void ClickBack()
@@ -136,5 +154,5 @@ public class QRScannerSceneChange : MonoBehaviour {
         callback.Invoke();
     }
 
-    #endregion
+#endregion
 }

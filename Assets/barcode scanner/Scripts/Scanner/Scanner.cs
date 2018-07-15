@@ -58,18 +58,18 @@ namespace BarcodeScanner.Scanner
 
 		public Scanner(ScannerSettings settings, IParser parser, IWebcam webcam)
 		{
-			// Check Device Authorization
-			if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
-			{
-				throw new Exception("This Webcam Library can't work without the webcam authorization");
-			}
-
 			Status = ScannerStatus.Initialize;
 
 			// Default Properties
 			Settings = (settings == null) ? new ScannerSettings() : settings;
 			Parser = (parser == null) ? new ZXingParser(Settings) : parser;
 			Camera = (webcam == null) ? new UnityWebcam(Settings) : webcam;
+			// Check Device Authorization
+			if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
+			{
+				throw new Exception("This Webcam Library can't work without the webcam authorization");
+			}
+
 		}
 
 		/// <summary>
