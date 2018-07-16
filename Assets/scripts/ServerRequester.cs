@@ -134,8 +134,9 @@ public class ServerRequester : MonoBehaviour
         sb.Remove(sb.Length - 1, 1);
         string opstring = sb.ToString();
 
+        gameId = gameId.ToLower();
         string hash = PersistantSaver.generateHash(PersistantSaver.playerData.nickname + gameId + pointstring + opstring + "super secret code");
-		UnityWebRequest req = UnityWebRequest.Get(adress + "/sendPoints?" + "points=" + pointstring + "&opinions=" + opstring + "&nick="+PersistantSaver.playerData.nickname + "&gameId=" + gameId.ToLower() + "&hash=" + hash);
+		UnityWebRequest req = UnityWebRequest.Get(adress + "/sendPoints?" + "points=" + pointstring + "&opinions=" + opstring + "&nick="+PersistantSaver.playerData.nickname + "&gameId=" + gameId + "&hash=" + hash);
         yield return req.SendWebRequest();
 
         if (req.isNetworkError || req.isHttpError)

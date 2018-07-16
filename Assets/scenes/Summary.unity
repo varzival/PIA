@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -945,7 +944,7 @@ RectTransform:
   m_Children:
   - {fileID: 76080089}
   m_Father: {fileID: 475178955}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1321,8 +1320,6 @@ RectTransform:
   m_Children:
   - {fileID: 541953464}
   - {fileID: 770639275}
-  - {fileID: 2083085950}
-  - {fileID: 599418954}
   - {fileID: 330229126}
   - {fileID: 1198970400}
   m_Father: {fileID: 0}
@@ -1646,6 +1643,8 @@ RectTransform:
   m_Children:
   - {fileID: 1922733926}
   - {fileID: 346997232}
+  - {fileID: 2083085950}
+  - {fileID: 599418954}
   m_Father: {fileID: 475178955}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1693,7 +1692,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 475178955}
+    m_TransformParent: {fileID: 541953464}
     m_Modifications:
     - target: {fileID: 114715037182775138, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
@@ -1743,12 +1742,12 @@ Prefab:
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -567
+      value: -192.99997
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 279
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
@@ -3126,12 +3125,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4680292714220618, guid: f9233bfd6688e7a4a9231dac0aa99587, type: 2}
       propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114148625172070352, guid: f9233bfd6688e7a4a9231dac0aa99587,
-        type: 2}
-      propertyPath: nextScene
-      value: Summary
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9233bfd6688e7a4a9231dac0aa99587, type: 2}
@@ -4466,7 +4460,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 475178955}
+    m_TransformParent: {fileID: 541953464}
     m_Modifications:
     - target: {fileID: 114715037182775138, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
@@ -4491,17 +4485,17 @@ Prefab:
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
@@ -4516,12 +4510,12 @@ Prefab:
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -567
+      value: -192.99997
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 279
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 224012454510927280, guid: 3d08de6b3e0a888428ef788cc90e9db8,
         type: 2}
